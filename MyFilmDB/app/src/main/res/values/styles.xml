@@ -1,0 +1,24 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Pastel.NoActionBar" parent="Theme.AppCompat.NoActionBar" >
+        <item name="colorPrimary">@color/primary_material_dark_1</item>
+    </style>
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/starnormal</item>
+        <item name="colorControlActivated">@color/staractivated</item>
+    </style>
+
+    <style name="Pastel" parent="Theme.AppCompat" >
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="Hologram" parent="android:Theme.Holo" />
+</resources>
