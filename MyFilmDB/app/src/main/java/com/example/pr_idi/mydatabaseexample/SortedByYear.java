@@ -2,7 +2,10 @@ package com.example.pr_idi.mydatabaseexample;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,6 +24,8 @@ public class SortedByYear extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,9 @@ public class SortedByYear extends AppCompatActivity {
         setContentView(R.layout.sorted_by_year);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_1);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Films Detail");
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         // use this setting to improve performance if you know that changes
@@ -50,6 +58,34 @@ public class SortedByYear extends AppCompatActivity {
         filmData.close();
         mAdapter = new MyAdapter(values);
         mRecyclerView.setAdapter(mAdapter);
+
+
+        drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView)findViewById(R.id.navview);
+
+        final Intent filmList = new Intent(this, MainActivity.class);
+        filmList.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener(){
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        switch (menuItem.getItemId()){
+                            case R.id.menu_seccion_1:
+                                startActivity(filmList);
+                                break;
+                            case R.id.menu_seccion_2:
+                                break;
+                            case R.id.menu_seccion_3:
+                                break;
+                            default:
+                                break;
+                        }
+                        drawerLayout.closeDrawers();
+                        return true;
+                    }
+                }
+        );
 
     }
     protected void onResume() {
@@ -80,9 +116,8 @@ public class SortedByYear extends AppCompatActivity {
                 Intent intent2 = new Intent(this, DeleteFromSorted.class);
                 startActivity(intent2);
                 break;
-            case R.id.action_menu:
-                //menu
-                break;
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
             default:
                 break;
         }
