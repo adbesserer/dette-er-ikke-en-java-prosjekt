@@ -77,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
         final Intent openDetails = new Intent(this, SortedByYear.class);
         openDetails.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        final Intent openSBA = new Intent(this, SearchByActor.class);
+        openSBA.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener(){
@@ -89,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(openDetails);
                                 break;
                             case R.id.menu_seccion_3:
+                                startActivity(openSBA);
                                 break;
                             default:
                                 break;
@@ -102,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showfilms(){
         List<Film> values = filmData.getFilmsByTitle();
-
         // use the SimpleCursorAdapter to show the
         // elements in a ListView
         ArrayAdapter<Film> adapter = new ArrayAdapter<>(this,

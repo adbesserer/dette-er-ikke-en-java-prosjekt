@@ -34,7 +34,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="ea0d378da83a493ed4603725d0d2cf1acbe4d6eb">
+        sha1="58b065ae432d8acbf64b69315568d3a5ab0e24fe">
         <dex dex="C:\Users\Aleix\Desktop\Practica IDI\dette-er-ikke-en-java-prosjekt\MyFilmDB\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_b15389937d2a1daae6a37bd172f777c887be8d4a\classes.dex" />
     </item>
     <item
@@ -124,7 +124,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="879745d557c2be0a9e38ce02fa31651eb702f7c7">
+        sha1="d44a8dc321c1e1f43b18252e35629ca5ec517f79">
         <dex dex="C:\Users\Aleix\Desktop\Practica IDI\dette-er-ikke-en-java-prosjekt\MyFilmDB\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_3f0b899a4924559a2e80224b35c98feee315a619\classes.dex" />
     </item>
     <item

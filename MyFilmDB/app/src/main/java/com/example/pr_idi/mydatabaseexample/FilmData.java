@@ -94,11 +94,14 @@ public class FilmData {
         database.delete(MySQLiteHelper.TABLE_FILMS, MySQLiteHelper.COLUMN_ID
                 + " = " + id, null);
     }
+
     public void deleteFilmbytitle(String title) {
         System.out.println("Film deleted with title: " + title);
         database.delete(MySQLiteHelper.TABLE_FILMS, MySQLiteHelper.COLUMN_TITLE
                 + " = " + "\""+title+"\"" , null);
-    }public void deleteALL() {
+    }
+
+    public void deleteALL() {
         System.out.println("ALL FILMS ERASED");
         database.delete(MySQLiteHelper.TABLE_FILMS,MySQLiteHelper.COLUMN_ID
                 + " >= " + 0,null);
@@ -120,6 +123,22 @@ public class FilmData {
         cursor.close();
         return comments;
     }
+
+    public List<Film> getFilmsByActor(String actor) {
+        List<Film> comments = new ArrayList<>();
+
+        Cursor cursor = database.query(MySQLiteHelper.TABLE_FILMS, allColumns, MySQLiteHelper.COLUMN_PROTAGONIST + "=" + "\""+actor+"\"",null,null,null,MySQLiteHelper.COLUMN_TITLE + " ASC");
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Film comment = cursorToFilm(cursor);
+            comments.add(comment);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return comments;
+    }
+
     public List<Film> getFilmsByYear() {
         List<Film> comments = new ArrayList<>();
 
@@ -151,6 +170,12 @@ public class FilmData {
         // make sure to close the cursor
         cursor.close();
         return comments;
+    }
+
+    public void modifyRating (Film film, float rating) {
+        ContentValues values = new ContentValues();
+        values.put(MySQLiteHelper.COLUMN_CRITICS_RATE,rating);
+        database.update(MySQLiteHelper.TABLE_FILMS,values,MySQLiteHelper.COLUMN_ID+" = "+ film.getId(),null);
     }
 
     private Film cursorToFilm(Cursor cursor) {

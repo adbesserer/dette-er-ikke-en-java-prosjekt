@@ -19,7 +19,8 @@
         <activity android:name=".RegisterNewFilm" />
         <activity android:name=".DeleteScreen" />
         <activity android:name=".DeleteFromSorted" />
-        <activity android:name=".ShowFilmInfo"></activity>
+        <activity android:name=".ShowFilmInfo" />
+        <activity android:name=".SearchByActor"></activity>
     </application>
 
 </manifest>

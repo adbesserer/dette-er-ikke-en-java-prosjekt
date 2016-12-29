@@ -65,6 +65,8 @@ public class SortedByYear extends AppCompatActivity {
 
         final Intent filmList = new Intent(this, MainActivity.class);
         filmList.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        final Intent openSBA = new Intent(this, SearchByActor.class);
+        openSBA.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener(){
@@ -77,6 +79,7 @@ public class SortedByYear extends AppCompatActivity {
                             case R.id.menu_seccion_2:
                                 break;
                             case R.id.menu_seccion_3:
+                                startActivity(openSBA);
                                 break;
                             default:
                                 break;
