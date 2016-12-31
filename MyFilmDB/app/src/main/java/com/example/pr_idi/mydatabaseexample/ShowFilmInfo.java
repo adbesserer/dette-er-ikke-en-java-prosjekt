@@ -63,15 +63,11 @@ public class ShowFilmInfo extends AppCompatActivity {
             ratingBar = (RatingBar)findViewById(R.id.ratingBar);
             oldRating = (float)(film.getCritics_rate()/2.);
             ratingBar.setRating(oldRating);
-            ratingBar.setOnTouchListener(new View.OnTouchListener() {
+            ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
                 @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    float newRating = ratingBar.getRating();
-                    if (newRating != oldRating){
-                        filmData.open();
-                        filmData.modifyRating(film,newRating*2);
-                    }
-                    return false;
+                public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                    filmData.open();
+                    filmData.modifyRating(film,rating*2);
                 }
             });
         }
