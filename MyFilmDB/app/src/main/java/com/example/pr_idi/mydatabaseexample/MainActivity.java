@@ -109,7 +109,8 @@ public class MainActivity extends AppCompatActivity {
         // elements in a ListView
         ArrayAdapter<Film> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, values);
-        lv.setAdapter(adapter);
+        ArrayAdapter<Film> adapter1 = new ArrayAdapter<>(this,R.layout.item, R.id.Item_name,values);
+        lv.setAdapter(adapter1);
     }
 
     // Will be called via the onClick attribute

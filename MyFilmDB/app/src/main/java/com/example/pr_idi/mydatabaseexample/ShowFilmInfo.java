@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -37,7 +39,7 @@ public class ShowFilmInfo extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_add_simple);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(title);
 
@@ -61,17 +63,23 @@ public class ShowFilmInfo extends AppCompatActivity {
             ratingBar = (RatingBar)findViewById(R.id.ratingBar);
             oldRating = (float)(film.getCritics_rate()/2.);
             ratingBar.setRating(oldRating);
+            ratingBar.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    float newRating = ratingBar.getRating();
+                    if (newRating != oldRating){
+                        filmData.open();
+                        filmData.modifyRating(film,newRating*2);
+                    }
+                    return false;
+                }
+            });
         }
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                float newRating = ratingBar.getRating();
-                if (newRating != oldRating){
-                    filmData.open();
-                    filmData.modifyRating(film,newRating*2);
-                }
                 finish();
             default:
                 break;

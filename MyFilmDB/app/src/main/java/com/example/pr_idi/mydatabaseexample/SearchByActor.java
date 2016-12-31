@@ -9,8 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -38,6 +41,22 @@ public class SearchByActor extends AppCompatActivity {
         getSupportActionBar().setTitle("Search by actor");
         lv = (ListView)findViewById(R.id.listview);
 
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View v, int position,
+                                    long arg3)
+            {
+                //on click in listview, show info on clicked film
+                Film film = (Film) adapter.getItemAtPosition(position);
+                String title= film.getTitle();
+                System.out.println("THE TITLE WAS "+title);
+                Intent intent = new Intent(getApplicationContext(), ShowFilmInfo.class);
+                intent.putExtra("title",String.valueOf(title));
+                startActivity(intent);
+
+            }
+        });
 
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         navigationView = (NavigationView)findViewById(R.id.navview);
@@ -86,9 +105,29 @@ public class SearchByActor extends AppCompatActivity {
                 if (shouldCleanToast) {
                     noResult.cancel();
                 }
+                if (TextUtils.isEmpty(newText)){
+                    lv.setAdapter(null);
+                }
                 return false;
             }
         });
+
+        searchView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                searchView.setIconified(false);
+            }
+        });
+
+        /*
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                lv.setAdapter(null);
+                return false;
+            }
+        });
+        */
     }
 
     public void showFilms(String query) {
@@ -101,7 +140,7 @@ public class SearchByActor extends AppCompatActivity {
             noResult.show();
         }
         ArrayAdapter<Film> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, values);
+                R.layout.item, R.id.Item_name, values);
         lv.setAdapter(adapter);
     }
 

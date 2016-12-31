@@ -141,6 +141,14 @@
             android:layout_gravity="center_horizontal"
             android:theme="@style/RatingBar"/>
 
+        <TextView
+            android:text="Click on the stars to change the film's rating"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:id="@+id/instructions"
+            android:textAlignment="center"
+            android:textSize="15sp" />
+
     </LinearLayout>
 
 </RelativeLayout>
